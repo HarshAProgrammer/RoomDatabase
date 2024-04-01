@@ -20,17 +20,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        database = Room.databaseBuilder(applicationContext,ContactDatabase::class.java,"contactDB").build()
+        database =
+            Room.databaseBuilder(applicationContext, ContactDatabase::class.java, "contactDB")
+                .build()
 
 
         GlobalScope.launch {
-            database.contactDao().insertContact(Contact(0,"Jhon","9999"))
+            database.contactDao().insertContact(Contact(0, "Jhon", "9999"))
         }
     }
 
     fun getData(view: View) {
         database.contactDao().getContact().observe(this, Observer {
-            Log.d("HarshAgarwal",it.toString())
+            Log.d("HarshAgarwal", it.toString())
         })
     }
 }
